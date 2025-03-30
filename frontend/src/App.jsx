@@ -7,6 +7,7 @@ import About from './pages/About'
 import Contact from './pages/Contact'
 import Footer from './components/Footer'
 import SearchBar from './components/SearchBar'
+import SingleProduct from './pages/SingleProduct'
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
        <Route path='/collection' element={<Collection />}/>
        <Route path='/about' element={<About />}/>
        <Route path='/contact' element={<Contact />}/>
+       <Route path='/singleproduct/:id' element={<SingleProduct />}/>
 
 
       </Routes>
