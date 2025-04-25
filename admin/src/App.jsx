@@ -17,9 +17,9 @@ const App = () => {
   const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem("token") : "")
 
 
-  useEffect(() => {
-     localStorage.setItem("token", token)
-  }, [token])
+  // useEffect(() => {
+  //    localStorage.setItem("token", token)
+  // }, [token])
 
   return (
     
@@ -39,8 +39,8 @@ const App = () => {
 
   <Route path='/' element={<Dashboard />}/>
   <Route path='/add' element={<Add token={token}/>}/>
-  <Route path='/items' element={<Items />}/>
-  <Route path='/order' element={<Order />}/>
+  <Route path='/items' element={<Items token={token} />}/>
+  <Route path='/order' element={<Order token={token}/>}/>
   <Route path='/customer' element={<Customers />}/>
   {/* <Route path='/login' element={<Login />}/> */}
 

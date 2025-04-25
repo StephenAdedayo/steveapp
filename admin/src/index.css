@@ -11,3 +11,8 @@ a.active{
   background: rgb(89, 88, 88);
   color: white;
 }
+
+.black{
+  background-color: dimgray;
+  color: white;
+}

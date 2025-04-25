@@ -74,7 +74,7 @@ const Navbar = () => {
               <div className="pt-4">
                 <div className="group-hover:block  hidden absolute right-0 bg-black text-gray-400 rounded-lg px-4 py-4  ">
                   <p>Profile</p>
-                  <p>Orders</p>
+                  <p onClick={() => navigate('/orders')}>Orders</p>
                   <div className="">
                     <p onClick={logout}>Logout </p>
 
@@ -92,7 +92,7 @@ const Navbar = () => {
               src={assets.cart_icon}
               alt=""
             />
-            <p className="bg-black text-[12px] absolute -bottom-2 left-2 p-1 rounded-full text-white size-4 flex items-center justify-center">
+            <p className="bg-black text-[12px] absolute top-3 left-2 p-1 rounded-full text-white size-4 flex items-center justify-center">
               {getCartCount()}
             </p>
           </div>

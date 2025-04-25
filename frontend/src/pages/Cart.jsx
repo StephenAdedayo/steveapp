@@ -5,9 +5,16 @@ import { ShopContext } from "../context/ShopContext";
 import { assets } from "../assets/assets";
 
 const Cart = () => {
-  const { products, currency, cartItems, updateQuantity } =
+  const { products, currency, cartItems, updateQuantity, navigate } =
     useContext(ShopContext);
   const [cartData, setCartData] = useState([]);
+
+ const navi = () => {
+  if(cartData.length > 0){
+    navigate("/placeOrder")
+  }
+}
+  
 
   useEffect(() => {
     //  checks if the product has been loaded or not to avoid running logic when it's empty or still fetching
@@ -102,11 +109,16 @@ const Cart = () => {
         })}
       </div>
 
-      <div className="flex justify-end my-20">
+      <div className="flex justify-end my-5">
         <div className="w-full sm:w-[400px]">
           <CartTotal />
         </div>
+
+        
       </div>
+      <div className="flex justify-end">
+          <button onClick={navi} className="bg-black text-white px-3 py-2 uppercase text-sm">Proceed to checkout</button>
+        </div>
     </div>
   );
 };

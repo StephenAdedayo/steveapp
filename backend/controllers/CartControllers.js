@@ -47,6 +47,7 @@ const addToCart = async (req, res) => {
 const updateCart = async (req, res) => {
 
     try {
+        // userId will be found using the token
         const {userId, itemId, size, quantity} = req.body
 
         const userData = await userModel.findById(userId)

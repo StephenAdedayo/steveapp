@@ -6,6 +6,7 @@ import userRouter from './routes/userRoutes.js'
 import productRouter from './routes/productRoutes.js'
 import connectCloudinary from './config/cloudinary.js'
 import cartRouter from './routes/cartRoute.js'
+import orderRouter from './routes/orderRoute.js'
 
 
 const server = express()
@@ -20,6 +21,7 @@ server.use(cors())
 server.use('/api/users', userRouter)
 server.use('/api/product', productRouter )
 server.use('/api/cart', cartRouter )
+server.use('/api/order', orderRouter )
 
 
 

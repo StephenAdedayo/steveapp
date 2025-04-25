@@ -12,6 +12,8 @@ import Cart from "./pages/Cart";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./pages/Login";
+import PlaceOrder from "./pages/PlaceOrder";
+import Orders from "./pages/Orders";
 
 const App = () => {
   return (
@@ -30,6 +32,8 @@ const App = () => {
           <Route path="/singleproduct/:id" element={<SingleProduct />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/placeOrder" element={<PlaceOrder />} />
+          <Route path="/orders" element={<Orders />} />
         </Routes>
       </main>
       <Footer />

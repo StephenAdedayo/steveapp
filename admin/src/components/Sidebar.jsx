@@ -4,7 +4,7 @@ import { assets } from '../assets/assets'
 
 const Sidebar = () => {
   return (
-    <aside className='w-full min-h-screen border-r py-10 border-r-gray-200 pl-5 lg:pl-20'>
+    <aside className='w-full sticky top-0 min-h-screen border-r py-10 border-r-gray-200 pl-5 lg:pl-20'>
         
         <div className='flex flex-col gap-5 w-full'>
         
