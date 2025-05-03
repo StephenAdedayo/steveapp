@@ -7,12 +7,12 @@ const ProductItem = ({ products }) => {
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
-      {products.map((item) => (
+      {products.map((item) => 
         <>
           <Link to={`/singleproduct/${item._id}`}>
             <div className="overflow-hidden">
               <img
-                className="hover:scale-110 transition ease-in "
+                className="hover:scale-110 size-[300px] object-cover transition ease-in "
                 src={item.image[0]}
                 alt=""
               />
@@ -24,7 +24,7 @@ const ProductItem = ({ products }) => {
             </div>
           </Link>
         </>
-      ))}
+      )}
     </div>
   );
 };
