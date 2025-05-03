@@ -40,7 +40,7 @@ const Order = ({token}) => {
   const statusHandler = async (e, orderId) => {
 
     try {
-      const response = await axios.post(backendUrl + "/api/order/updateStatus", {orderId, status:e.target.value}, {headers:{token}})
+      const response = await axios.post(backendUrl + "/api/order/updateStatus", {orderId, status:e}, {headers:{token}})
       if(response.data.success){
         await allOrders()
       }
@@ -96,7 +96,7 @@ const Order = ({token}) => {
        </div>
 
        <p className='text-sm sm:text-[15px]'>{order.amount}</p>
-        <select onChange={(e) => statusHandler(e, order._id) } value={order.status} className='p-2 font-semibold'>
+        <select onChange={(e) => statusHandler(e.target.value, order._id) } value={order.status} className='p-2 font-semibold'>
           <option value="Order Placed">Order Placed</option>
           <option value="Packing">Packing</option>
           <option value="Shipped">Shipped</option>

@@ -14,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Login from "./pages/Login";
 import PlaceOrder from "./pages/PlaceOrder";
 import Orders from "./pages/Orders";
+import Verify from "./pages/Verify";
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/placeOrder" element={<PlaceOrder />} />
           <Route path="/orders" element={<Orders />} />
+          <Route path="/verify" element={<Verify />} />
         </Routes>
       </main>
       <Footer />
