@@ -55,8 +55,16 @@ const PlaceOrder = () => {
 
             let orderData = {
                 address : formData,
+                // email:formData.email,
                 items : orderItems,
                 amount : getCartAmount() + delivery_fee
+            }
+
+           let letPay = {
+            address : formData,
+            email:formData.email,
+            items : orderItems,
+            amount : getCartAmount() + delivery_fee
             }
 
             switch (method){
@@ -76,16 +84,33 @@ const PlaceOrder = () => {
                 const responseStripe = await axios.post(backendUrl + "/api/order/stripe", orderData, {headers : {token}})
                 if(responseStripe.data.success){
                   const {session_url} = responseStripe.data
+                  // redirects user to stripe payment page
                   window.location.replace(session_url)
                 }else{
                   toast.error(responseStripe.data.message)
                 }
               }
               break
+
+              case "paystack": {
+                const responseStack = await axios.post(backendUrl + "/api/order/paystack", letPay, {
+                  headers: { token }
+                });
+              
+                if (responseStack.data.success) {
+                  const { authorization_url } = responseStack.data;
+                  window.location.replace(authorization_url); // redirect to Paystack payment page
+                } else {
+                  toast.error(responseStack.data.message);
+                }
+              }
+              break;
+
               
               default : 
               break
             }
+
             
         } catch (error) {
             console.log(error.message);
@@ -102,7 +127,7 @@ const PlaceOrder = () => {
       <Text text1={'Delivery'} text2={'Information'}/>
 
       <form onSubmit={onSubmitHandler} className=' mt-10'>
-     <div className='flex lg:gap-50 gap-20 flex-col lg:flex-row'>
+     <div className='flex lg:gap-20 gap-20 flex-col lg:flex-row'>
       <div className='flex-[50%] space-y-4'>
      
       <div className='flex gap-5'>
@@ -140,6 +165,14 @@ const PlaceOrder = () => {
             <p className={`${method === 'stripe' ? "bg-green-500" : ""} h-4 rounded-full w-4  `}></p>
             {/* <p className='text-gray-400'>Cash on delivery</p> */}
             <img className='w-[50px]' src={assets.stripe_logo} alt="" />
+           </div>
+
+           <div className='flex items-center gap-5 border border-gray-300 px-3 py-1' onClick={() => setMethod("paystack")}>
+            <p className={`${method === 'paystack' ? "bg-green-500" : ""} h-4 rounded-full w-4  `}></p>
+            {/* <p className='text-gray-400'>Cash on delivery</p> */}
+            <img className='w-[70px]' src={assets.paystack} alt="" />
+            {/* <p>Paystack</p> */}
+
            </div>
         </div>
         </div>

@@ -8,6 +8,7 @@ const Navbar = () => {
   const { setShowSearch, navigate, getCartCount, token, setToken } =
     useContext(ShopContext);
 
+    // function for logging out a user by removing the stored token
   const logout = () => {
     localStorage.removeItem("token");
     setToken("");

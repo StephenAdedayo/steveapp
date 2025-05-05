@@ -15,6 +15,7 @@ import Login from "./pages/Login";
 import PlaceOrder from "./pages/PlaceOrder";
 import Orders from "./pages/Orders";
 import Verify from "./pages/Verify";
+import VerifyStack from "./pages/VerifyStack";
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
           <Route path="/placeOrder" element={<PlaceOrder />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/verify" element={<Verify />} />
+          <Route path="/verifystack" element={<VerifyStack />} />
         </Routes>
       </main>
       <Footer />
