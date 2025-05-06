@@ -21,13 +21,13 @@ const Footer = () => {
 
             <ul className="text-gray-500">
               <li>
-                <Link>Home</Link>
+                <Link to={'/'}>Home</Link>
               </li>
               <li>
-                <Link>About us</Link>
+                <Link to={'/about'}>About us</Link>
               </li>
               <li>
-                <Link>Delivery</Link>
+                <Link >Delivery</Link>
               </li>
               <li>
                 <Link>Privacy Policy</Link>

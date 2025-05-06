@@ -1,5 +1,5 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Collection from "./pages/Collection";
@@ -18,6 +18,13 @@ import Verify from "./pages/Verify";
 import VerifyStack from "./pages/VerifyStack";
 
 const App = () => {
+
+  const location = useLocation()
+
+  useEffect(() => {
+     window.scroll({top:0, behavior:"smooth"})
+  }, [location])
+
   return (
     <>
       <ToastContainer />
