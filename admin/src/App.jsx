@@ -19,10 +19,12 @@ const App = () => {
 
   const location = useLocation()
 
-  // useEffect(() => {
+
+
+  useEffect(() => {
     //  localStorage.setItem("token", token)
-    //  setOpen(false)
-  // }, [location])
+     window.scroll({top:0, behavior:'smooth'})
+  }, [location])
 
   return (
     
