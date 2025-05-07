@@ -157,32 +157,34 @@ const PlaceOrder = () => {
 
         <div className='flex flex-wrap gap-5 mt-5'>
            <div className='flex items-center lg:gap-5 gap-2 border border-gray-300 px-3 py-1' onClick={() => setMethod("cod")}>
-            <p className={`${method === 'cod' ? "bg-green-500" : ""} h-4 rounded-full w-4  `}></p>
-            <p className='text-gray-400'>COD</p>
+            <p className={`${method === 'cod' ? "bg-green-500" : ""} h-3 rounded-full w-3 `}></p>
+            <p className='text-gray-400 text-[14px]'>COD</p>
            </div>
 
            <div className='flex items-center lg:gap-5 gap-2 border border-gray-300 px-3 py-1' onClick={() => setMethod("stripe")}>
-            <p className={`${method === 'stripe' ? "bg-green-500" : ""} h-4 rounded-full w-4  `}></p>
+            <p className={`${method === 'stripe' ? "bg-green-500" : ""} h-3 rounded-full w-3  `}></p>
             {/* <p className='text-gray-400'>Cash on delivery</p> */}
-            <img className='w-[50px]' src={assets.stripe_logo} alt="" />
+            <img className='w-[40px]' src={assets.stripe_logo} alt="" />
            </div>
 
            <div className='flex items-center lg:gap-5 gap-2 border border-gray-300 px-3 py-1' onClick={() => setMethod("paystack")}>
-            <p className={`${method === 'paystack' ? "bg-green-500" : ""} h-4 rounded-full w-4  `}></p>
+            <p className={`${method === 'paystack' ? "bg-green-500" : ""} h-3 rounded-full w-3  `}></p>
             {/* <p className='text-gray-400'>Cash on delivery</p> */}
             <img className='w-[70px]' src={assets.paystack} alt="" />
             {/* <p>Paystack</p> */}
-
+      
            </div>
+           
         </div>
         </div>
+        <div className='mt-5'>
+        <button type='submit' className='bg-black text-white px-6 py-2 uppercase text-sm mt-2'>Place Order</button>
+     </div>
       </div>
 
 
 </div>
-      <div className='flex justify-end'>
-        <button type='submit' className='bg-black text-white px-6 py-2 uppercase text-sm mt-2'>Place Order</button>
-     </div>
+      
       </form>
        
      

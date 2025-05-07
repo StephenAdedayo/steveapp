@@ -84,21 +84,21 @@ const Collection = () => {
   }, [sortType]);
 
   return (
-    <div className="w-full flex lg:flex-row flex-col gap-10 mt-10 ">
+    <div className="w-full flex xl:flex-row flex-col gap-10 mt-10 ">
       <div className="flex-[20%]">
         <div className="flex gap-3 items-center">
           <p>FILTER</p>
           <img
             onClick={() => setShowFilter(!showFilter)}
             src={assets.dropdown_icon}
-            className={`w-3 lg:hidden block ${
+            className={`w-3 xl:hidden block ${
               showFilter ? "rotate-90" : ""
             } transition-transform duration-300 delay-75 ease-in `}
             alt=""
           />
         </div>
 
-        <div className={`mt-10 lg:block  ${showFilter ? "" : "hidden"}`}>
+        <div className={`mt-10 xl:block  ${showFilter ? "" : "hidden"}`}>
           <div className="border p-3  mb-5 border-gray-300">
             <p className="uppercase mb-5">categories</p>
             <div className="flex flex-col font-light text-base">

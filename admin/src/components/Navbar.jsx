@@ -31,6 +31,7 @@ const Navbar = ({setToken, setOpen, open}) => {
   useEffect(() => {
     setOpen(false)
   }, [location])
+  
   return (
     <>
     <nav ref={navRef} className='px-5 transition duration-500 delay-75 ease-in-out lg:px-20 py-5 sticky z-40 top-0 w-full flex justify-between items-center border-b border-gray-200'>
