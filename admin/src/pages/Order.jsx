@@ -60,9 +60,7 @@ const Order = ({token}) => {
     <div>
       {orders.map((order, index) => (
          <div className='grid grid-cols-1 sm:grid-cols-[0.5fr_2fr_1fr] lg:grid-cols-[0.5fr_2fr_1fr_1fr_1fr] gap-3  items-start border-2 border-gray-200 p-5 md:p-8 my-3 md:my-4 text-xs sm:text-sm text-gray-700' key={index}>
-         <img className='w-12' src={assets.parcel_icon} alt="" />
-         <div>
-         <div>
+                   <div>
           {
             order.items.map((item, index) => {
               // this means this item is the last item
@@ -71,6 +69,7 @@ const Order = ({token}) => {
           //  return 
           return (
             <div>
+              <img className='w-[50px]' src={item.image[0]} alt="" />
             <p className='py-0.5' key={index}>{item.name} x {item.quantity} <span>{item.size}</span></p>
             {/* <p className='py-0.5' key={index}>{item.name} x {item.quantity} <span>{item.size},</span></p> */}
           </div>
@@ -80,6 +79,9 @@ const Order = ({token}) => {
             })
           }
          </div>
+         {/* <img className='w-12' src={assets.parcel_icon} alt="" /> */}
+         <div>
+
          <p className='mt-3 mb-2 font-medium'>{order.address.firstName + " " + order.address.lastName}</p>
           <div>
             <p>{order.address.street + "," }</p>

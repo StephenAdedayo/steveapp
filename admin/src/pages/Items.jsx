@@ -77,13 +77,13 @@ const Items = ({token}) => {
          <p className='col-span-2'>Action</p>
         </div>
 
-       <div className='w-full overflow-x-scroll '>
+       <div className='w-full '>
         {items.map((item, index) => (
           <div className='p-2  border border-gray-300 grid grid-cols-12 gap-2 items-center' key={index}>
             <img className='w-[100px] col-span-3' src={item.image[0]} alt="" />
             <p className='col-span-3'>{item.name}</p>
             <p className='col-span-2'>{item.category}</p>
-            <p className='col-span-2'>{item.price}</p>
+            <p className='col-span-2'>${item.price}</p>
             <p onClick={() => deleteProduct(item._id)} className='col-span-2 '>X</p>
           </div>
         ))}

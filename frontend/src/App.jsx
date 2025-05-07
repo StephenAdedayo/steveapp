@@ -18,12 +18,11 @@ import Verify from "./pages/Verify";
 import VerifyStack from "./pages/VerifyStack";
 
 const App = () => {
-
-  const location = useLocation()
+  const location = useLocation();
 
   useEffect(() => {
-     window.scroll({top:0, behavior:"smooth"})
-  }, [location])
+    window.scroll({ top: 0, behavior: "smooth" });
+  }, [location]);
 
   return (
     <>

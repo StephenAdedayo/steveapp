@@ -16,3 +16,10 @@ a.active{
   background-color: dimgray;
   color: white;
 }
+
+@media screen and (max-width:640px){
+  a.active{
+    background:rgb(121, 120, 120);
+  color: white;
+  }
+}
