@@ -15,6 +15,8 @@ const Navbar = () => {
     navigate("/login");
   };
 
+  const [hover, setHover] = useState(false)
+
   const openSearchBar = () => {
     navigate("/collection");
     setShowSearch(true);
@@ -24,6 +26,7 @@ const Navbar = () => {
 
   useEffect(() => {
     setMenuOpen(false);
+    setHover(false)
   }, [location]);
 
   return (
@@ -63,17 +66,18 @@ const Navbar = () => {
             alt=""
           />
 
-          <div className="group relative">
+          <div className="relative">
             <img
-              onClick={() => (token ? null : navigate("/login"))}
+              onClick={() => (token ? null || setHover(!hover): navigate("/login"))}
+              // onClick={} 
               className="size-5"
               src={assets.profile_icon}
               alt=""
             />
 
             {token && (
-              <div className="pt-4">
-                <div className="group-hover:block  hidden absolute right-0 bg-black text-gray-400 rounded-lg px-4 py-4  ">
+              <div  className="pt-4">
+                <div  className={`${hover ? 'opacity-100' : "opacity-0"}  absolute right-0 bg-black text-gray-400 rounded-lg px-4 py-4  `}>
                   <p>Profile</p>
                   <p onClick={() => navigate('/orders')}>Orders</p>
                   <div className="">
