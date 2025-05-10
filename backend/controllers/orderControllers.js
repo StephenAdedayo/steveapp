@@ -326,7 +326,7 @@ const placeOrderPaystack = async (req, res) => {
     } catch (error) {
       console.log(error.message);
 
-      res.json({success: false, message: "Flutterwave Payment Initialization Faile"})
+      res.json({success: false, message: "Flutterwave Payment Initialization Failed"})
     }
   }
 
