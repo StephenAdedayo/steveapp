@@ -106,6 +106,17 @@ const PlaceOrder = () => {
               }
               break;
 
+              case 'flutterwave' : {
+                const responseWave = await axios.post(backendUrl + "/api/order/flutterwave", letPay, {headers : {token}})
+
+                if(responseWave.data.success){
+                  const {authorization_url} = responseWave.data
+                  window.location.replace(authorization_url)
+                }else{
+                  toast.error(responseWave.data.message)
+                }
+              }
+
               
               default : 
               break
@@ -119,6 +130,16 @@ const PlaceOrder = () => {
         }
 
     }
+
+    const submit = () => {
+      onSubmitHandler()
+    }
+ 
+    const pay = (method) => {
+      setMethod(method)
+      submit()
+    } 
+
 
 
   return (
@@ -155,30 +176,38 @@ const PlaceOrder = () => {
         <div className='mt-10'>
         <Text text1={'Payment'} text2={'Method'}/>
 
-        <div className='flex flex-wrap gap-5 mt-5'>
-           <div className='flex items-center lg:gap-5 gap-2 border border-gray-300 px-3 py-1' onClick={() => setMethod("cod")}>
+        <div className='flex flex-wrap  gap-5 mt-5'>
+           <button className='flex items-center lg:gap-5 gap-2 border border-gray-300 px-3 py-1' onClick={() => pay("cod")}>
             <p className={`${method === 'cod' ? "bg-green-500" : ""} h-3 rounded-full w-3 `}></p>
             <p className='text-gray-400 text-[14px]'>COD</p>
-           </div>
+           </button>
 
-           <div className='flex items-center lg:gap-5 gap-2 border border-gray-300 px-3 py-1' onClick={() => setMethod("stripe")}>
+           <button className='flex items-center lg:gap-5 gap-2 border border-gray-300 px-3 py-1' onClick={() => pay("stripe")}>
             <p className={`${method === 'stripe' ? "bg-green-500" : ""} h-3 rounded-full w-3  `}></p>
             {/* <p className='text-gray-400'>Cash on delivery</p> */}
             <img className='w-[40px]' src={assets.stripe_logo} alt="" />
-           </div>
+           </button>
 
-           <div className='flex items-center lg:gap-5 gap-2 border border-gray-300 px-3 py-1' onClick={() => setMethod("paystack")}>
+           <button type='submit'  className='flex items-center lg:gap-5 gap-2 border border-gray-300 px-3 py-1' onClick={() => pay('paystack')}>
             <p className={`${method === 'paystack' ? "bg-green-500" : ""} h-3 rounded-full w-3  `}></p>
             {/* <p className='text-gray-400'>Cash on delivery</p> */}
             <img className='w-[70px]' src={assets.paystack} alt="" />
             {/* <p>Paystack</p> */}
       
-           </div>
+           </button>
+
+           <button className='flex items-center lg:gap-5 gap-2 border border-gray-300 px-3 py-4' onClick={() => pay("flutterwave")}>
+            <p className={`${method === 'flutterwave' ? "bg-green-500" : ""} h-3 rounded-full w-3  `}></p>
+            {/* <p className='text-gray-400'>Cash on delivery</p> */}
+            <img className='w-[70px]' src={assets.flw} alt="" />
+            {/* <p>Flutterwave</p> */}
+      
+           </button>
            
         </div>
         </div>
         <div className='mt-5'>
-        <button type='submit' className='bg-black text-white px-6 py-2 uppercase text-sm mt-2'>Place Order</button>
+        {/* <button type='submit' className='bg-black text-white px-6 py-2 uppercase text-sm mt-2'>Place Order</button> */}
      </div>
       </div>
 

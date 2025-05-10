@@ -9,7 +9,7 @@ const deliveryCharge = 10
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 const paystackSecretKey = process.env.PAYSTACK_SECRET_KEY;
-
+const flutterwaveSecretKey = process.env.FLW_SECRET_KEY
 
 // placing order using cod method
 const placeOrder = async (req, res) => {
@@ -266,4 +266,102 @@ const placeOrderPaystack = async (req, res) => {
     }
   };
 
-export {placeOrder, allOrders, userOrders, updateStatus, placeOrderStripe, verifyStripe, placeOrderPaystack, verifyPaystackPayment}
+  const placeOrderFlutterwave = async (req, res) => {
+
+    try {
+      const {items, amount, address, email, userId} = req.body
+
+    const {origin} = req.headers
+     
+    const orderData = {
+      userId,
+      amount,
+      items,
+      address,
+      paymentMethod : "flutterwave",
+      payment : false,
+      date : Date.now()
+    }
+
+
+    const newOrder = new orderModel(orderData)
+
+    await newOrder.save()
+
+    const tx_ref = `TX-${Date.now()}-${Math.floor(Math.random() * 100000)}`;
+    const totalAmount = amount * 1500; // NGN, no need to multiply by 100 for Flutterwave
+
+
+    const flutterwaveRes = await axios.post(
+      "https://api.flutterwave.com/v3/payments",
+      {
+        tx_ref,
+        amount: totalAmount,
+        currency: "NGN",
+        redirect_url: `${origin}/verifywave?orderId=${newOrder._id}`,
+        customer: {
+          email,
+          name: "Customer",
+        },
+        customizations: {
+          title: "Royal Boutique",
+          description: "Payment for items in cart",
+        },
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${flutterwaveSecretKey}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const {link} = flutterwaveRes.data.data
+
+    res.json({success: true, authorization_url : link})
+
+    
+
+
+    } catch (error) {
+      console.log(error.message);
+
+      res.json({success: false, message: "Flutterwave Payment Initialization Faile"})
+    }
+  }
+
+
+  const verifyFlutterwavePayment = async (req, res) => {
+    const { transaction_id, orderId, userId } = req.body;
+  
+    try {
+      const verifyRes = await axios.get(
+        `https://api.flutterwave.com/v3/transactions/${transaction_id}/verify`,
+        {
+          headers: {
+            Authorization: `Bearer ${flutterwaveSecretKey}`,
+          },
+        }
+      );
+  
+      const paymentData = verifyRes.data.data;
+  
+      if (paymentData.status === "successful") {
+        await orderModel.findByIdAndUpdate(orderId, {
+          payment: true,
+        });
+  
+        await userModel.findByIdAndUpdate(userId, { cartData: {} });
+  
+        res.json({ success: true });
+      } else {
+        await orderModel.findByIdAndDelete(orderId);
+        res.json({ success: false });
+      }
+    } catch (error) {
+      console.error("Flutterwave Verification Error:", error.response?.data || error.message);
+      res.json({ success: false, message: "Payment verification failed" });
+    }
+  };
+
+export {placeOrder, allOrders, userOrders, updateStatus, placeOrderStripe, verifyStripe, placeOrderPaystack, verifyPaystackPayment, placeOrderFlutterwave, verifyFlutterwavePayment}

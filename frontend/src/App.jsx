@@ -16,6 +16,7 @@ import PlaceOrder from "./pages/PlaceOrder";
 import Orders from "./pages/Orders";
 import Verify from "./pages/Verify";
 import VerifyStack from "./pages/VerifyStack";
+import VerifyWave from "./pages/VerifyWave";
 
 const App = () => {
   const location = useLocation();
@@ -44,6 +45,7 @@ const App = () => {
           <Route path="/orders" element={<Orders />} />
           <Route path="/verify" element={<Verify />} />
           <Route path="/verifystack" element={<VerifyStack />} />
+          <Route path="/verifywave" element={<VerifyWave />} />
         </Routes>
       </main>
       <Footer />

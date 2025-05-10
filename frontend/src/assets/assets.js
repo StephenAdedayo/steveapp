@@ -74,8 +74,10 @@ import razorpay_logo from './razorpay_logo.png'
 import stripe_logo from './stripe_logo.png'
 import cross_icon from './cross_icon.png'
 import paystack from './paystack.png'
+import flw from './flw.png'
 
 export const assets = {
+    flw,
     paystack,
     logo,
     hero_img,
