@@ -65,13 +65,13 @@ const Cart = () => {
               className="py-4 border-t border-b text-gray-700 w-full flex justify-between items-center"
             >
               <div className="flex items-center gap-3">
-                <img className="w-[100px]" src={productData.image[0]} alt="" />
+                <img className="w-[100px]" src={productData?.image[0]} alt="" />
                 <div>
-                  <p>{productData.category}</p>
+                  <p>{productData?.category}</p>
                   <div className="flex items-center gap-2">
                     <p>
                       {currency}
-                      {productData.price}
+                      {productData?.price}
                     </p>
                     <p>{item.size}</p>
                   </div>
