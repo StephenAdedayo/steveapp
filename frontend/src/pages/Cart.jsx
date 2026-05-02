@@ -46,6 +46,8 @@ const Cart = () => {
     }
   }, [cartItems, products]);
 
+  // another way of doing cartData, see placeOrder page
+
   return (
     <div className="w-full ">
       <div className="my-10">

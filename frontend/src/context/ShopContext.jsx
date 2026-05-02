@@ -22,26 +22,37 @@ const ShopContextProvider = (props) => {
       return toast.error("Select Preferred size");
     }
 
-    const cartData = structuredClone(cartItems);
+    // const cartData = structuredClone(cartItems);
 
     //checks if the iten exits
-    if (cartData[itemId]) {
-      // if it exits, check if the size exits
-      if (cartData[itemId][size]) {
-        // increase the size + 1
-        cartData[itemId][size] += 1;
-      } else {
-        // set the size = 1
-        cartData[itemId][size] = 1;
-      }
-    } else {
-      // if items does not exists at all, create a new object for the item
-      cartData[itemId] = {};
-      // set the size = 1
-      cartData[itemId][size] = 1;
-    }
+    // if (cartData[itemId]) {
+    //   // if it exits, check if the size exits
+    //   if (cartData[itemId][size]) {
+    //     // increase the size + 1
+    //     cartData[itemId][size] += 1;
+    //   } else {
+    //     // set the size = 1
+    //     cartData[itemId][size] = 1;
+    //   }
+    // } else {
+    //   // if items does not exists at all, create a new object for the item
+    //   cartData[itemId] = {};
+    //   // set the size = 1
+    //   cartData[itemId][size] = 1;
+    // }
 
-    setCartItems(cartData);
+    // setCartItems(cartData);
+
+      if(!itemId) return toast.error("Failed to add to cart")
+
+      const cartData = {
+        ...cartItems, 
+        [itemId] : {
+          ...(cartItems[itemId] || {}),
+          [size] : (cartItems[itemId]) && (cartItems[itemId][size] || 0) + 1 
+        }
+      }
+      setCartItems(cartData)
 
     if (token) {
       try {
@@ -74,10 +85,19 @@ const ShopContextProvider = (props) => {
   };
 
   const updateQuantity = async (itemId, size, quantity) => {
-    let cartData = structuredClone(cartItems);
+    // let cartData = structuredClone(cartItems);
 
-    cartData[itemId][size] = quantity;
-    setCartItems(cartData);
+    // cartData[itemId][size] = quantity;
+    // setCartItems(cartData);
+    const cartData = {
+      ...cartItems,
+      [itemId] : {
+        ...(cartItems[itemId]),
+        [size] : quantity
+      }
+    }
+
+    setCartItems(cartData)
 
     if (token) {
       try {

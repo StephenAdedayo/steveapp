@@ -37,19 +37,35 @@ const PlaceOrder = () => {
         try {
             let orderItems = []
 
-            for (const items in cartItems){
-                for (const item in cartItems[items]){
-                    if(cartItems[items][item] > 0){
-                        const itemInfo = structuredClone(products.find(product => product._id === items))
-                         if(itemInfo){
-                            itemInfo.size = item
-                            itemInfo.quantity = cartItems[items][item]
-                            orderItems.push(itemInfo)
-                         }
+            // for (const items in cartItems){
+            //     for (const item in cartItems[items]){
+            //         if(cartItems[items][item] > 0){
+            //             const itemInfo = structuredClone(products.find(product => product._id === items))
+            //              if(itemInfo){
+            //                 itemInfo.size = item
+            //                 itemInfo.quantity = cartItems[items][item]
+            //                 orderItems.push(itemInfo)
+            //              }
 
-                    }
-                }
-            }
+            //         }
+            //     }
+            // }
+            Object.keys(cartItems).map((item) => {
+               const product = products.find((product) => product._id === item)
+               if(product){
+              Object.keys(cartItems[item]).map((size) => {
+                orderItems.push({
+                ...product,
+                size,
+                quantity : cartItems[item][size]
+                })
+                
+              })
+               }
+            })
+
+            orderItems = orderItems.filter(item => item.quantity > 0)
+
 
             console.log(orderItems);
 
