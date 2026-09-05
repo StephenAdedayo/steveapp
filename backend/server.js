@@ -15,14 +15,13 @@ const port = process.env.PORT || 5000
 connectDB()
 connectCloudinary()
 
-server.use(express.json())
-server.use(cors())
+server.use(express.json({limit:'500mb'}))
+server.use(cors({origin : 'https://steveapp-ui.vercel.app'}))
 
 server.use('/api/users', userRouter)
 server.use('/api/product', productRouter )
 server.use('/api/cart', cartRouter )
 server.use('/api/order', orderRouter )
-
 
 
 server.get('/', (req, res) => {
