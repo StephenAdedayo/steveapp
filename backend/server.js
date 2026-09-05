@@ -15,8 +15,8 @@ const port = process.env.PORT || 5000
 connectDB()
 connectCloudinary()
 
-server.use(express.json({limit:'500mb'}))
 server.use(cors({origin : 'https://steveapp-ui.vercel.app'}))
+server.use(express.json({limit:'500mb'}))
 
 server.use('/api/users', userRouter)
 server.use('/api/product', productRouter )
@@ -28,6 +28,7 @@ server.get('/', (req, res) => {
  res.json({msg: 'API WORKING'})
 })
 
-server.listen(port, () => {
-    console.log('server started successfully on', port);
-})
+// server.listen(port, () => {
+//     console.log('server started successfully on', port);
+// })
+export default server
